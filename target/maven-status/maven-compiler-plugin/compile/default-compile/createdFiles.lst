@@ -1,1 +1,3 @@
-com\keppelland\sg\HelloServlet.class
+com\keppelland\sg\servlets\HelloServlet.class
+com\keppelland\sg\common\Common.class
+com\keppelland\sg\models\FqlUser.class

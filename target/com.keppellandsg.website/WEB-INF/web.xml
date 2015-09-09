@@ -8,7 +8,7 @@
   	<servlet-name>HelloServlet</servlet-name>
   	<display-name>HelloServlet</display-name>
   	<description></description>
-  	<servlet-class>com.keppelland.sg.HelloServlet</servlet-class>
+  	<servlet-class>com.keppelland.sg.servlets.HelloServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>HelloServlet</servlet-name>

@@ -1,0 +1,5 @@
+package com.keppelland.sg.common;
+
+public final class Common {
+	public static String ACCESS_TOKEN = "CAACEdEose0cBAIfsvYp7GgAR6vp08cRxDI7Q4ZBmN4N96nLZBTWYEI4lHZCA020ZBkWdZBnPxTeIUfwB1fpEQaedolBb72Lx5oZBeeQx43fwzujZB4FZBbUHzt964wmhZB6tDh6IZAEZAOUvgtv60tTx2Xto0y3PeEWvyAgHQl5rHSuLN1Go2ZCqsfRJJXlnRojCPxhyFs9gyqaYUgZDZD";
+}
