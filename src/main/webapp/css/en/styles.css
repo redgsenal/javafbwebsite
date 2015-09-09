@@ -1,0 +1,16 @@
+/* line 1, ../../../../../sass/en/_base_styles.scss */
+body {
+  background-color: #dedede;
+}
+/* line 4, ../../../../../sass/en/_base_styles.scss */
+body .page {
+  width: 980px;
+  min-height: 1000px;
+  margin: 0 auto;
+}
+/* line 9, ../../../../../sass/en/_base_styles.scss */
+body .page .content {
+  background-color: #fefefe;
+  min-height: 1000px;
+  padding-top: 50px;
+}

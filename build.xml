@@ -1,0 +1,87 @@
+<project name="com.keppellandsg.website" default="package.build"
+	basedir=".">
+	<description>
+		com.keppellandsg.website build file
+	</description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+
+	<property name="env.jruby.path" value="${basedir}/tools/jruby/bin"/>
+	<property name="env.jruby.path.win" value="tools\jruby\bin"/>
+
+	<tstamp>
+		<format property="BUILD_DATE" pattern="yyyy-MM-dd'T'HH:mm:ss" locale="en,UK" />
+	</tstamp>
+
+	<macrodef name="maven">
+		<attribute name="dir" default="." />
+		<attribute name="args" />
+		<sequential>
+			<exec executable="mvn.bat" dir="@{dir}" osfamily="Windows" failonerror="true">
+				<arg line="@{args}" />
+			</exec>
+			<exec executable="mvn" dir="@{dir}" os="SunOS|Mac OS X|Linux" failonerror="true">
+				<arg line="@{args}" />
+			</exec>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="curl">
+		<attribute name="args" />
+		<sequential>
+			<exec executable="tools/curl/curl.exe" osfamily="Windows" failonerror="true">
+				<arg line="@{args}" />
+			</exec>
+			<exec executable="curl" os="SunOS|Mac OS X|Linux" failonerror="true">
+				<arg line="@{args}" />
+			</exec>
+		</sequential>
+	</macrodef>
+
+	<!-- Compile SASS to CSS using Compass -->
+	<macrodef name="compass">
+		<attribute name="args" />
+		<sequential>
+			<exec executable="${env.jruby.path}/compass.bat" osfamily="Windows">
+				<env key="PATH" value="${env.Path};${env.jruby.path.win}" />
+				<arg line="@{args}" />
+			</exec>
+			<exec executable="${env.jruby.path}/jruby" os="SunOS|Mac OS X|Linux">
+				<env key="PATH" value="${env.PATH}:${env.jruby.path}" />
+				<arg line="${env.jruby.path}/compass @{args}" />
+			</exec>
+		</sequential>
+	</macrodef>
+	
+	<target name="sass.compile">
+        <compass args="compile -c sass/en/config.rb"/>
+	</target>
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile" depends="init" description="compile the source">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}" />
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+		<!-- Create the distribution directory -->
+		<mkdir dir="${dist}/lib" />
+
+		<!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+		<jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}" />
+	</target>
+
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+</project>
