@@ -1,0 +1,21 @@
+.buttonstyle {
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.graybutton {
+	background-color: $gray;
+}
+
+.greenbutton {
+	background-color: $green01;
+}
+
+.center {
+	margin: 0 auto;
+	display: block;
+}
+
+a {
+	color: $greenlink;
+}
